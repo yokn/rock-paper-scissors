@@ -1,42 +1,62 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-console */
-
+let computerChoice;
 function computerPlay() {
-        const computerChoice = Math.random();
-        if (computerChoice < 0.33) return 'rock';
-        if (computerChoice > 0.66) return 'scissors';
-        return 'paper';
+        const randomSeed = Math.random();
+        if (randomSeed < 0.33) {
+                return (computerChoice = 'rock');
+        }
+        if (randomSeed > 0.66) {
+                return (computerChoice = 'scissors');
+        }
+        return (computerChoice = 'paper');
 }
+
 function play(playerSelection, computerSelection) {
         if (playerSelection === 'rock') {
                 if (computerSelection === 'rock') {
-                        return 'Your rock tied against rock';
+                        return 0;
                 }
                 if (computerSelection === 'scissors') {
-                        return 'Your rock won against scissors';
+                        return 1;
                 }
 
-                return 'Your rock lost against paper';
+                return -1;
         }
         if (playerSelection === 'scissors') {
                 if (computerSelection === 'rock') {
-                        return 'Your scissors lost against rock';
+                        return -1;
                 }
                 if (computerSelection === 'scissors') {
-                        return 'Your scissors tied against scissors';
+                        return 0;
                 }
 
-                return 'Your scissors won against paper';
+                return 1;
         }
 
         if (computerSelection === 'rock') {
-                return 'Your paper won against rock';
+                return 1;
         }
         if (computerSelection === 'scissors') {
-                return 'Your paper lost against scissors';
+                return -1;
         }
 
-        return 'Your paper tied against paper';
+        return 0;
+}
+
+function main(playerSelection) {
+        const roundResult = play(playerSelection, computerPlay());
+        if (roundResult === 1) {
+                console.log(`Your ${playerSelection} won against ${computerChoice}`);
+                return;
+        }
+        if (roundResult === 0) {
+                console.log(`Your ${playerSelection} tied against ${computerChoice}`);
+                return;
+        }
+        if (roundResult === -1) {
+                console.log(`Your ${playerSelection} lost against ${computerChoice}`);
+        }
 }
 
 const buttoncontainer = document.querySelector('#buttoncontainer');
@@ -60,6 +80,6 @@ buttoncontainer.appendChild(button3);
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
         button.addEventListener('click', () => {
-                console.log(play(button.id, computerPlay()));
+                main(button.id);
         });
 });
