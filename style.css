@@ -1,0 +1,22 @@
+body{
+    background-color: aliceblue;
+    padding-top: 10%;
+}
+
+p {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+button {
+    display: flex;
+    
+    align-content: center;
+    justify-content: center;
+    width: 120px;
+}
+#buttonContainer{
+    display: flex;
+    justify-content: center;
+    
+}

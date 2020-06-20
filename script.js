@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-console */
 let playerScore = 0;
 let computerScore = 0;
 let computerChoice;
@@ -7,9 +5,12 @@ let computerChoice;
 const body = document.querySelector('body');
 
 const scoreContainer = document.createElement('div');
+// scoreContainer.id = 'scoreContainer';
 const resultP = document.createElement('p');
+// resultP.id = resultP;
 resultP.textContent = 'Select a move below to play!';
 const scoreP = document.createElement('p');
+// scoreP.id = 'scoreP';
 scoreP.textContent = '0 vs 0';
 scoreContainer.appendChild(resultP);
 scoreContainer.appendChild(scoreP);
@@ -17,12 +18,13 @@ scoreContainer.appendChild(scoreP);
 body.appendChild(scoreContainer);
 
 const buttonContainer = document.createElement('div');
+buttonContainer.id = 'buttonContainer';
 const button1 = document.createElement('button');
 const button2 = document.createElement('button');
 const button3 = document.createElement('button');
-button1.setAttribute('id', 'rock');
-button2.setAttribute('id', 'paper');
-button3.setAttribute('id', 'scissors');
+button1.id = 'rock';
+button2.id = 'paper';
+button3.id = 'scissors';
 button1.textContent = 'Rock';
 button2.textContent = 'Paper';
 button3.textContent = 'Scissors';
@@ -96,14 +98,14 @@ function main(playerSelection) {
         const roundResult = play(playerSelection, computerPlay());
         if (roundResult === 1) {
                 resultP.textContent = `Your ${playerSelection} won against ${computerChoice}`;
-                playerScore++;
+                playerScore += 1;
         }
         if (roundResult === 0) {
                 resultP.textContent = `Your ${playerSelection} tied against ${computerChoice}`;
         }
         if (roundResult === -1) {
                 resultP.textContent = `Your ${playerSelection} lost against ${computerChoice}`;
-                computerScore++;
+                computerScore += 1;
         }
         updateScore();
 }
